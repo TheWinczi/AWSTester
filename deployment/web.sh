@@ -10,7 +10,7 @@ echo "=============================="
 
 sudo apt install -y --update
 sudo apt install -y git
-sudo apt install -y python3 python3-venv
+sudo apt install -y python3 python3-venv pkg-config default-libmysqlclient-dev build-essential
 
 echo "=============================="
 echo "Making directory"
