@@ -122,3 +122,7 @@ STATIC_ROOT = BASE_DIR / 'static'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Settings of Gunicorn
+BIND = '0.0.0.0:8000'
+WORKERS = 2
