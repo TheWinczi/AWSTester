@@ -58,7 +58,7 @@ PrivateTmp=true
 WantedBy=multi-user.target
 EOF'
 
-sudo mv gunicorn.service /etc/systemd/system/gunicorn
+sudo mv gunicorn.service /etc/systemd/system/gunicorn.service
 sudo systemctl daemon-reload
 sudo systemctl enable gunicorn
 sudo systemctl start gunicorn
