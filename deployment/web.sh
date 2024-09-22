@@ -35,6 +35,13 @@ source venv/bin/activate
 sudo venv/bin/pip install -r requirements.txt
 
 echo "=============================="
+echo "Initializing database"
+echo "=============================="
+
+python manage.py makemigrations
+python manage.py migrate
+
+echo "=============================="
 echo "Making gunicorn service"
 echo "=============================="
 
