@@ -17,7 +17,7 @@ echo "Making directory"
 echo "=============================="
 
 sudo mkdir -p $ROOT_DIR
-sudo -s cd $ROOT_DIR
+cd $ROOT_DIR
 
 echo "=============================="
 echo "Downloadnig repository content"
@@ -29,7 +29,7 @@ echo "=============================="
 echo "Installing packages"
 echo "=============================="
 
-sudo -s cd mysite
+cd mysite
 sudo python3 -m venv venv
 sudo source venv/bin/activate
 sudo venv/bin/pip install -r requirements.txt
@@ -38,7 +38,7 @@ echo "=============================="
 echo "Making gunicorn service"
 echo "=============================="
 
-cat <<EOT > gunicorn.service
+cat <<EOT > gunicornservice
 [Unit]
 Description=Gunicorn instance to serve application
 After=network.target
@@ -57,8 +57,8 @@ PrivateTmp=true
 WantedBy=multi-user.target
 EOT
 
-sudo mv gunicorn.service /etc/systemd/system/gunicorn.service
-sudo systemctl daemon-restart
+sudo mv gunicornservice /etc/systemd/system/gunicorn.service
+sudo systemctl daemon-reload
 sudo systemctl enable gunicorn
 sudo systemctl start gunicorn
 
@@ -88,7 +88,7 @@ EOT
 
 sudo mv mysite.nginx /etc/nginx/sites-available/mysite
 sudo rm -rf /etc/nginx/sites-enabled/default
-sudo ln -s /etc/nginx/sites-available/mysite /etc/nginx/site-enabled
+sudo ln -s /etc/nginx/sites-available/mysite /etc/nginx/sites-enabled
 
 echo "=============================="
 echo "Restarting Nginx"
