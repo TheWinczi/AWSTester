@@ -63,39 +63,6 @@ sudo systemctl daemon-reload
 sudo systemctl enable gunicorn
 sudo systemctl start gunicorn
 
-
-echo "=============================="
-echo "Installing and configuring Nginx"
-echo "=============================="
-
-sudo apt install nginx -y
-sudo touch mysite.config
-sudo bash -c 'cat <<EOF > mysite.config
-server {
-    listen 80;
-
-    location /static/ {
-        root /home/ubuntu/mysite/static/;
-    }
-
-    location / {
-        proxy_pass http://172.31.37.10:8000;
-    }
-}
-EOF'
-
-sudo mv mysite.config /etc/nginx/sites-available/mysite
-sudo rm -rf /etc/nginx/sites-enabled/default
-sudo ln -s /etc/nginx/sites-available/mysite /etc/nginx/sites-enabled
-
-echo "=============================="
-echo "Restarting Nginx"
-echo "=============================="
-
-sudo systemctl start nginx
-sudo systemctl enable nginx
-sudo systemctl restart nginx
-
 echo "=============================="
 echo "Installation done!"
 echo "=============================="
