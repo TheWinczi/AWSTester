@@ -28,8 +28,8 @@ pipeline {
 
         stage('Building') {
             steps {
-                dir("mysite") {
-                    sh "python3 manage.py runserver DJANGO_HOST:DJANGO_PORT"
+                dir('mysite') {
+                    sh 'python3 manage.py runserver ${env.DJANGO_HOST}:${env.DJANGO_PORT}'
                 }
             }
         }
