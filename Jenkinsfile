@@ -28,8 +28,15 @@ pipeline {
 
         stage('Building') {
             steps {
-                sh "cd mysite"
-                sh "python3 manage.py runserver DJANGO_HOST:DJANGO_PORT"
+                dir("mysite") {
+                    sh "python3 manage.py runserver DJANGO_HOST:DJANGO_PORT"
+                }
+            }
+        }
+
+        stage('Testing') {
+            steps {
+                sh 'curl 127.0.0.1:8000'
             }
         }
     }
