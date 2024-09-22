@@ -28,6 +28,7 @@ pipeline {
 
         stage('Building') {
             steps {
+                sh "cd mysite"
                 sh "python3 manage.py runserver DJANGO_HOST:DJANGO_PORT"
             }
         }
