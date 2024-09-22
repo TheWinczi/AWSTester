@@ -9,7 +9,7 @@ echo "Updating apt and installing tools"
 echo "=============================="
 
 sudo apt install -y --update
-sudo apt install -y uzip git
+sudo apt install -y git
 sudo apt install -y python3 python3-venv
 
 echo "=============================="
@@ -17,7 +17,7 @@ echo "Making directory"
 echo "=============================="
 
 sudo mkdir -p $ROOT_DIR
-sudo cd $ROOT_DIR
+sudo -s cd $ROOT_DIR
 
 echo "=============================="
 echo "Downloadnig repository content"
@@ -29,7 +29,7 @@ echo "=============================="
 echo "Installing packages"
 echo "=============================="
 
-sudo cd mysite
+sudo -s cd mysite
 sudo python3 -m venv venv
 sudo source venv/bin/activate
 sudo venv/bin/pip install -r requirements.txt
@@ -69,16 +69,19 @@ echo "=============================="
 
 sudo apt install nginx -y
 cat <<EOT > mysite.nginx
+upstream mysite { 
+    server web:8000;
+}
+
 server {
     listen 80;
-    server_name 3.90.48.79;
 
     location /static/ {
         root /home/ubuntu/mysite/static/;
     }
 
     location / {
-        proxy_pass http://172.31.43.242:8000;
+        proxy_pass http://mysite;
     }
 }
 EOT
