@@ -29,6 +29,8 @@ pipeline {
         stage('Building') {
             steps {
                 dir('mysite') {
+                    sh "python3 manage.py makemigrations"
+                    sh "python3 manage.py migrate"
                     sh "python3 manage.py runserver ${env.DJANGO_HOST}:${env.DJANGO_PORT}"
                 }
             }

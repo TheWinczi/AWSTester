@@ -75,14 +75,21 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mysite',
-        'USER': 'django',
-        'PASSWORD': 'Django123#',
-        'HOST': '172.31.44.29',
-        'PORT': '3306'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'mysite',
+#         'USER': 'django',
+#         'PASSWORD': 'Django123#',
+#         'HOST': '172.31.44.29',
+#         'PORT': '3306'
+#     }
+# }
 
 
 # Password validation
